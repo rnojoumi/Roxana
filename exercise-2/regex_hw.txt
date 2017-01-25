@@ -6,12 +6,12 @@ As species of the same genus have usually, though by no means invariably, some s
 ANSWER:____________\ss[a-zA-Z]*\s______________________________
 
 2.  Write a regular expression that will find the last word of every sentence. Your regular expression should capture the whole last word - not just the first or last letter! (Hint: note that not all sentences end with a period- one ends in an `!`)   
-ANSWER:_______\s[a-zA-Z]*\.___________________________________
+ANSWER:_______\w*\.|\w*\!__________________________________
 
 3.  Write a regular expression that will find the first word of every sentence. Your regular expression should match the whole first word- not just the first letter!    
-ANSWER:_________\.\s[A-Z]_
+ANSWER:_____^\w*\s_____
 4.  Write a regular expression that will match the **sentence** containing the phrase "Asiatic cockroach".  
-ANSWER:__________\.?\!\s.*Asiatic cockroach.*?\.______________________________________  
+ANSWER:__________^.*Asiatic cockroach.*\.|\!______________________________________  
 
 Now consider the following comma-delimited rows of data (this is a small number of rows from some of Gaurav's research, with the actual species codes and seed counts changed...):  
 
@@ -40,8 +40,8 @@ Now consider the following comma-delimited rows of data (this is a small number 
 	744,R,2,MIBA,1096
 
 5.  Write a regular expression that will match any row with an `NA` in the final column.  
-ANSWER:________\d{3},R,\d,[A-Z]{4},NA________________________________________
+ANSWER:________\d.*NA$________________________________________
 
 6.  Write a regular expression that will match all rows for where `plot_num` (column 1) is either 740, 741, or 742, and `replicate` (column 3) is either 1 or 4.  
-ANSWER:____________74[0-1-2],R,[1,4],[A-Z]{4},.*____________________________________
+ANSWER:____________74[0-2],R,[1,4],.*____________________________________
 	
