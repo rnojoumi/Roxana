@@ -1,0 +1,69 @@
+---
+title: "EEB177-exercise8"
+author: "Roxana Nojoumi"
+date: "March 1, 2017"
+output: html_document
+---
+
+## exploring the cocoli dataset
+
+```{r}
+cocoli_dat <- read.table("~/Desktop/eeb-177/lab-work/exercise-8/cocoli.txt", header = TRUE)
+head(cocoli_dat)
+str(cocoli_dat)
+View(cocoli_dat)
+
+sizes_in_1994 <- cocoli_dat$dbh1
+names(sizes_in_1994) <- cocoli_dat$tag
+sizes_in_1994[1]#calling by position
+sizes_in_1994["000001"]#subset a vector by name
+
+
+#find all instances of dbh =171
+sizes_in_1994 == 171
+
+#all trees that began 1994 with dbh 171
+#make a list of trees that were 171 dbh
+trees_171_1994= which(sizes_in_1994==171)
+trees_171_1994
+
+sizes_in_1997 <- cocoli_dat$dbh2
+names(sizes_in_1997) <- cocoli_dat$tag
+
+sizes_in_1998 <- cocoli_dat$dbh3
+names(sizes_in_1998) <- cocoli_dat$tag
+sizes_in_1997[trees_171_1994]
+
+
+#calculate RGR 1997-1994
+yearly_RGR1= ((cocoli_dat$dbh2-cocoli_dat$dbh1)/ cocoli_dat$dbh1)/3
+yearly_RGR1
+
+
+#add RGR column
+cocoli_dat$rgr1 = yearly_RGR1
+
+View(cocoli_dat)
+```
+
+
+
+
+##plots
+
+```{r}
+#make histogram with hist()
+#barplot with barplot()
+#boxplot with boxplot()
+#scatter plot with plot()
+
+hist(cocoli_dat$dbh1, xlab= "DBH in 1994(mm)", main = "distribution of sizes in 1994", col = "pink", xlim=c(0,2000))
+
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(cocoli_dat) + geom_histogram(aes(dbh1))+ geom_histogram(aes(dbh2), fill="pink", alpha=0.2)
+ggtitle("Distribution of sizes in 1994")
+```
